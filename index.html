@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UF Jacksonville Graduate Programs · Luncheon Resource Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --uf-navy: #003087;
+      --uf-orange: #FA4616;
+      --uf-navy-light: #E6EDF8;
+      --text: #1a1a1a;
+      --text-secondary: #5a5a5a;
+      --text-tertiary: #8a8a8a;
+      --border: rgba(0,0,0,0.1);
+      --surface: #f7f6f3;
+      --white: #ffffff;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .page { max-width: 980px; margin: 0 auto; }
+
+    .header {
+      background: var(--uf-navy);
+      border-radius: var(--radius);
+      padding: 2.5rem 2.5rem 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      background: rgba(250,70,22,0.12);
+      pointer-events: none;
+    }
+
+    .uf-eyebrow {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--uf-orange); margin-bottom: 0.6rem;
+    }
+
+    .header h1 {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: clamp(24px, 4vw, 34px);
+      font-weight: 300; color: #fff;
+      line-height: 1.25; margin-bottom: 0.75rem;
+    }
+    .header h1 strong { font-weight: 600; }
+
+    .header-sub {
+      font-size: 15px; color: rgba(255,255,255,0.65);
+      line-height: 1.65; max-width: 560px; margin-bottom: 1.5rem;
+    }
+
+    .header-cta {
+      display: inline-block; background: var(--uf-orange);
+      color: #fff; font-size: 13px; font-weight: 500;
+      padding: 10px 22px; border-radius: var(--radius-sm);
+      text-decoration: none; transition: opacity 0.15s;
+    }
+    .header-cta:hover { opacity: 0.88; }
+
+    .section-label {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 0.85rem;
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 16px; margin-bottom: 2.5rem;
+    }
+
+    .program-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.4rem;
+      display: flex; flex-direction: column;
+    }
+
+    .program-tag {
+      display: inline-block; font-size: 11px; font-weight: 500;
+      padding: 3px 9px; border-radius: 4px;
+      margin-bottom: 10px; align-self: flex-start;
+    }
+    .tag-cs   { background: #dce9f8; color: #0c3d7a; }
+    .tag-eng  { background: #ddf0e0; color: #1b5e30; }
+    .tag-ai   { background: #eae6fc; color: #3a2d8a; }
+    .tag-law  { background: #fde8d8; color: #7a2e0a; }
+    .tag-arch { background: #e8f0e8; color: #2a4a2a; }
+    .tag-biz  { background: #fff0d6; color: #7a4e00; }
+    .tag-mba  { background: #f2e8f8; color: #5a2080; }
+
+    .program-name {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 17px; font-weight: 600; color: var(--text);
+      line-height: 1.3; margin-bottom: 4px;
+    }
+
+    .program-dept {
+      font-size: 12px; color: var(--text-tertiary);
+      margin-bottom: 14px; line-height: 1.4;
+    }
+
+    .program-details {
+      border-top: 1px solid var(--border);
+      padding-top: 12px; margin-top: auto;
+    }
+
+    .detail-row {
+      display: flex; justify-content: space-between;
+      align-items: baseline; font-size: 12.5px;
+      padding: 3px 0; gap: 8px;
+    }
+    .detail-key { color: var(--text-tertiary); flex-shrink: 0; }
+    .detail-val { color: var(--text-secondary); font-weight: 500; text-align: right; }
+    .detail-val a { color: var(--uf-navy); text-decoration: none; }
+    .detail-val a:hover { text-decoration: underline; }
+
+    .card-actions {
+      display: flex; gap: 8px;
+      margin-top: 14px; flex-wrap: wrap;
+    }
+
+    .btn-learn {
+      flex: 1; display: inline-block; text-align: center;
+      font-size: 12px; font-weight: 500;
+      padding: 8px 12px; border-radius: var(--radius-sm);
+      text-decoration: none; border: 1px solid var(--uf-navy);
+      color: var(--uf-navy); background: transparent;
+      transition: background 0.15s; white-space: nowrap;
+    }
+    .btn-learn:hover { background: var(--uf-navy-light); }
+
+    .btn-materials {
+      flex: 1; display: inline-block; text-align: center;
+      font-size: 12px; font-weight: 500;
+      padding: 8px 12px; border-radius: var(--radius-sm);
+      text-decoration: none; border: 1px solid transparent;
+      color: #fff; background: var(--uf-navy);
+      cursor: pointer; transition: opacity 0.15s; white-space: nowrap;
+    }
+    .btn-materials:hover { opacity: 0.85; }
+
+    /* MODAL */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45); z-index: 100;
+      align-items: center; justify-content: center; padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--white); border-radius: var(--radius);
+      width: 100%; max-width: 500px;
+      padding: 1.75rem; position: relative;
+      max-height: 90vh; overflow-y: auto;
+    }
+
+    .modal-close {
+      position: absolute; top: 1rem; right: 1rem;
+      background: none; border: none; font-size: 22px;
+      cursor: pointer; color: var(--text-tertiary); line-height: 1;
+    }
+    .modal-close:hover { color: var(--text); }
+
+    .modal-eyebrow {
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-tertiary); margin-bottom: 0.4rem;
+    }
+    .modal-title {
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-size: 20px; font-weight: 600;
+      color: var(--text); margin-bottom: 1.25rem; line-height: 1.3;
+    }
+
+    .modal-section-label {
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-tertiary); margin: 1rem 0 0.5rem;
+    }
+    .modal-section-label:first-of-type { margin-top: 0; }
+
+    .modal-file {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 14px; background: var(--surface);
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      text-decoration: none; color: inherit;
+      margin-bottom: 8px; transition: border-color 0.15s;
+    }
+    .modal-file:hover { border-color: rgba(0,48,135,0.4); }
+    .modal-file:last-child { margin-bottom: 0; }
+
+    .modal-file-icon {
+      width: 34px; height: 40px; border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 0.05em; flex-shrink: 0;
+    }
+    .icon-pdf { background: #faeae4; color: #993c1d; }
+    .icon-ppt { background: #fff0d6; color: #7a4e00; }
+
+    .modal-file-info { flex: 1; min-width: 0; }
+    .modal-file-name { font-size: 13px; font-weight: 500; color: var(--text); }
+    .modal-file-desc { font-size: 11.5px; color: var(--text-tertiary); margin-top: 2px; }
+    .modal-file-arrow { font-size: 14px; color: var(--text-tertiary); }
+
+    /* FOOTER */
+    .footer {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem 1.75rem;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    }
+    .footer p { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
+    .footer strong { color: var(--text); }
+    .footer-link {
+      display: inline-block; font-size: 13px; font-weight: 500;
+      color: var(--uf-navy); border: 1px solid var(--uf-navy);
+      padding: 9px 18px; border-radius: var(--radius-sm);
+      text-decoration: none; white-space: nowrap; transition: background 0.15s;
+    }
+    .footer-link:hover { background: var(--uf-navy-light); }
+
+    @media (max-width: 600px) {
+      .header { padding: 1.75rem 1.5rem 1.5rem; }
+      .footer { flex-direction: column; align-items: flex-start; }
+      .program-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+
+  <header class="header">
+    <p class="uf-eyebrow">University of Florida &middot; Jacksonville</p>
+    <h1>Graduate Programs<br><strong>Luncheon Resource Hub</strong></h1>
+    <p class="header-sub">Thank you for attending the luncheon. Program details and luncheon materials are collected below for easy reference and access.</p>
+    <a href="https://jax.ufl.edu/programs/" target="_blank" rel="noopener" class="header-cta">Explore all UF Jacksonville programs &rarr;</a>
+  </header>
+
+  <p class="section-label">Jacksonville Programs</p>
+  <div class="program-grid">
+
+    <!-- 1. Computer Science -->
+    <div class="program-card">
+      <span class="program-tag tag-cs">Computer Science</span>
+      <p class="program-name">MS in Computer Science</p>
+      <p class="program-dept">Herbert Wertheim College of Engineering &middot; CISE</p>
+      <div class="program-details">
+        <div class="detail-row"><span class="detail-key">Length</span><span class="detail-val">1.5&ndash;2 years / 30 credits</span></div>
+        <div class="detail-row"><span class="detail-key">Format</span><span class="detail-val">In-person, Jacksonville</span></div>
+        <div class="detail-row"><span class="detail-key">Focus</span><span class="detail-val">AI, Cybersecurity</span></div>
+        <div class="detail-row"><span class="detail-key">Starts</span><span class="detail-val">Fall 2026</span></div>
+        <div class="detail-row"><span class="detail-key">Contact</span><span class="detail-val"><a href="mailto:MSCS.JAX@CISE.UFL.EDU">MSCS.JAX@CISE.UFL.EDU</a></span></div>
+      </div>
+      <div class="card-actions">
+        <a href="https://jax.ufl.edu/programs/ms-in-computer-science/" target="_blank" class="btn-learn">Learn more</a>
+        <a href="#" class="btn-materials" onclick="openModal('modal-cs'); return false;">Access materials</a>
+      </div>
+    </div>
+
+    <!-- 2. Engineering Management -->
+    <div class="program-card">
+      <span class="program-tag tag-eng">Engineering Management</span>
+      <p class="program-name">MS in Engineering Management</p>
+      <p class="program-dept">Herbert Wertheim College of Engineering &middot; ISE</p>
+      <div class="program-details">
+        <div class="detail-row"><span class="detail-key">Length</span><span class="detail-val">20 months / 30 credits</span></div>
+        <div class="detail-row"><span class="detail-key">Format</span><span class="detail-val">Weekends only, Jacksonville</span></div>
+        <div class="detail-row"><span class="detail-key">Focus</span><span class="detail-val">Data Analytics, Smart Mfg</span></div>
+        <div class="detail-row"><span class="detail-key">Starts</span><span class="detail-val">Fall 2026</span></div>
+        <div class="detail-row"><span class="detail-key">Contact</span><span class="detail-val"><a href="mailto:sspanton@ufl.edu">sspanton@ufl.edu</a></span></div>
+      </div>
+      <div class="card-actions">
+        <a href="https://jax.ufl.edu/programs/ms-in-engineering-management/" target="_blank" class="btn-learn">Learn more</a>
+        <a href="#" class="btn-materials" onclick="openModal('modal-eng'); return false;">Access materials</a>
+      </div>
+    </div>
+
+    <!-- 3. AI in Biomedical & Health Sciences -->
+    <div class="program-card">
+      <span class="program-tag tag-ai">AI &amp; Health Sciences</span>
+      <p class="program-name">MS in AI in Biomedical &amp; Health Sciences</p>
+      <p class="program-dept">College of Medicine &middot; Intelligent Clinical Care Center</p>
+      <div class="program-details">
+        <div class="detail-row"><span class="detail-key">Length</span><span class="detail-val">1.5 years / 30 credits</span></div>
+        <div class="detail-row"><span class="detail-key">Format</span><span class="detail-val">Hybrid &mdash; Jax &amp; Gainesville</span></div>
+        <div class="detail-row"><span class="detail-key">Focus</span><span class="detail-val">Machine learning, AI ethics, clinical AI</span></div>
+        <div class="detail-row"><span class="detail-key">Starts</span><span class="detail-val">Fall 2026</span></div>
+        <div class="detail-row"><span class="detail-key">Contact</span><span class="detail-val"><a href="mailto:j.womack@ufl.edu">j.womack@ufl.edu</a></span></div>
+      </div>
+      <div class="card-actions">
+        <a href="https://jax.ufl.edu/programs/ai-health-science/" target="_blank" class="btn-learn">Learn more</a>
+        <a href="#" class="btn-materials" onclick="openModal('modal-ai'); return false;">Access materials</a>
+      </div>
+    </div>
+
+    <!-- 4. Master of Studies in Law -->
+    <div class="program-card">
+      <span class="program-tag tag-law">Law</span>
+      <p class="program-name">Master of Studies in Law</p>
+      <p class="program-dept">Levin College of Law &middot; Asst. Dean Jennifer McIntyre</p>
+      <div class="program-details">
+        <div class="detail-row"><span class="detail-key">Length</span><span class="detail-val">1&ndash;5 years / 30 credits</span></div>
+        <div class="detail-row"><span class="detail-key">Format</span><span class="detail-val">Online now; In-person Jax Fall 2026</span></div>
+        <div class="detail-row"><span class="detail-key">Focus</span><span class="detail-val">Tax, Healthcare, Financial/Estate Planning</span></div>
+        <div class="detail-row"><span class="detail-key">Starts</span><span class="detail-val">In-person Fall 2026</span></div>
+        <div class="detail-row"><span class="detail-key">Contact</span><span class="detail-val"><a href="mailto:mcintyre@law.ufl.edu">mcintyre@law.ufl.edu</a></span></div>
+      </div>
+      <div class="card-actions">
+        <a href="https://jax.ufl.edu/programs/law/" target="_blank" class="btn-learn">Learn more</a>
+        <a href="#" class="btn-materials" onclick="openModal('modal-law'); return false;">Access materials</a>
+      </div>
+    </div>
+
+    <!-- 5. Architecture -->
+    <div class="program-card">
+      <span class="program-tag tag-arch">Architecture</span>
+      <p class="program-name">Architecture &mdash; CityLab Jacksonville</p>
+      <p class="program-dept">College of Design, Construction &amp; Planning &middot; Nancy Clark, Director</p>
+      <div class="program-details">
+        <div class="detail-row"><span class="detail-key">Length</span><span class="detail-val">1&ndash;4 years (by track)</span></div>
+        <div class="detail-row"><span class="detail-key">Format</span><span class="detail-val">Studio-based, Jacksonville</span></div>
+        <div class="detail-row"><span class="detail-key">Focus</span><span class="detail-val">Resilience, sustainability, urban design</span></div>
+        <div class="detail-row"><span class="detail-key">Starts</span><span class="detail-val">Enrolling now</span></div>
+        <div class="detail-row"><span class="detail-key">Contact</span><span class="detail-val"><a href="mailto:nmclark@ufl.edu">nmclark@ufl.edu</a></span></div>
+      </div>
+      <div class="card-actions">
+        <a href="https://jax.ufl.edu/programs/architecture/" target="_blank" class="btn-learn">Learn more</a>
+        <a href="#" class="btn-materials" onclick="openModal('modal-arch'); return false;">Access materials</a>
+      </div>
+    </div>
+
+    <!-- 6. MBA & MS in Management -->
+    <div class="program-card">
+      <span class="program-tag tag-biz">Business</span>
+      <p class="program-name">MBA &amp; MS in Management</p>
+      <p class="program-dept">Warrington College of Business</p>
+      <div class="program-details">
+        <div class="detail-row"><span class="detail-key">Length</span><span class="detail-val">MBA: 24 mo &middot; MSM: 16 mo</span></div>
+        <div class="detail-row"><span class="detail-key">Format</span><span class="detail-val">Weekend sessions, Jacksonville</span></div>
+        <div class="detail-row"><span class="detail-key">Focus</span><span class="detail-val">MBA: leadership &amp; strategy &middot; MSM: AI &amp; analytics</span></div>
+        <div class="detail-row"><span class="detail-key">Starts</span><span class="detail-val">Fall 2026</span></div>
+        <div class="detail-row"><span class="detail-key">Contact</span><span class="detail-val"><a href="mailto:lea.fernandes@warrington.ufl.edu">lea.fernandes@warrington.ufl.edu</a></span></div>
+      </div>
+      <div class="card-actions">
+        <a href="https://warrington.ufl.edu/graduate/part-time-weekend-mba-jacksonville/" target="_blank" class="btn-learn">Learn more</a>
+        <a href="#" class="btn-materials" onclick="openModal('modal-biz'); return false;">Access materials</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <p><strong>Ready to learn more or connect your team with UF Jacksonville?</strong><br>
+    Visit the full programs page or reach out to any program contact above.</p>
+    <a href="https://jax.ufl.edu/programs/" target="_blank" rel="noopener" class="footer-link">jax.ufl.edu/programs &rarr;</a>
+  </footer>
+
+</main>
+
+<!-- ── MODALS ── -->
+
+<!-- Computer Science -->
+<div id="modal-cs" class="modal-overlay" onclick="closeOnOverlay(event,'modal-cs')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-cs')">&times;</button>
+    <p class="modal-eyebrow">MS in Computer Science</p>
+    <p class="modal-title">Luncheon materials</p>
+    <p class="modal-section-label">Presentation</p>
+    <a href="pdfs/UF_Jax_Computer_Science_Program.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-ppt">PPT</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">CISE@JAX Program Presentation</p>
+        <p class="modal-file-desc">Dr. Daisy Zhe Wang &middot; Director, CISE</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+    <p class="modal-section-label">Handouts</p>
+    <a href="pdfs/CISE_JAX_Corporate_Engagement_Accessible.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-pdf">PDF</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">Employer Engagement One-Pager</p>
+        <p class="modal-file-desc">Corporate engagement &amp; partnership opportunities</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+  </div>
+</div>
+
+<!-- Engineering Management -->
+<div id="modal-eng" class="modal-overlay" onclick="closeOnOverlay(event,'modal-eng')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-eng')">&times;</button>
+    <p class="modal-eyebrow">MS in Engineering Management</p>
+    <p class="modal-title">Luncheon materials</p>
+    <p class="modal-section-label">Presentation</p>
+    <a href="pdfs/UF_Jax_Engineering_Management.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-ppt">PPT</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">MSEM Program Presentation</p>
+        <p class="modal-file-desc">Dr. Shantih (Tee) Spanton &middot; Assoc. Director</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+    <p class="modal-section-label">Handouts</p>
+    <a href="pdfs/MSEM_GetInvolvedBrochure.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-pdf">PDF</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">Get Involved Brochure</p>
+        <p class="modal-file-desc">Outreach packet &amp; partnership opportunities</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+    <a href="pdfs/UF_Jax_MSEM_One_pager.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-pdf">PDF</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">Program One-Pager</p>
+        <p class="modal-file-desc">Curriculum, prerequisites &amp; how to apply</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+  </div>
+</div>
+
+<!-- AIBHS -->
+<div id="modal-ai" class="modal-overlay" onclick="closeOnOverlay(event,'modal-ai')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-ai')">&times;</button>
+    <p class="modal-eyebrow">MS in AI in Biomedical &amp; Health Sciences</p>
+    <p class="modal-title">Luncheon materials</p>
+    <p class="modal-section-label">Presentation</p>
+    <a href="pdfs/UF_Jax_AIBHS_Program.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-ppt">PPT</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">AIBHS Program Presentation</p>
+        <p class="modal-file-desc">Dr. Azra Bihorac &middot; Senior Assoc. Dean for Research</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+    <p class="modal-section-label">Handouts</p>
+    <a href="pdfs/4_21_2026_MS_AIBHS_one_page_flyer.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-pdf">PDF</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">One-Page Flyer</p>
+        <p class="modal-file-desc">Program overview &amp; key facts</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+    <a href="pdfs/4_21_2026_M_S__AIBHS_Marketing_Brochure.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-pdf">PDF</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">Marketing Brochure</p>
+        <p class="modal-file-desc">Curriculum, job outlook &amp; program details</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+    <a href="pdfs/4_21_2026_AIBHS_Booklet_Updated.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-pdf">PDF</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">Full Program Booklet</p>
+        <p class="modal-file-desc">Detailed program guide</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+  </div>
+</div>
+
+<!-- Law -->
+<div id="modal-law" class="modal-overlay" onclick="closeOnOverlay(event,'modal-law')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-law')">&times;</button>
+    <p class="modal-eyebrow">Master of Studies in Law</p>
+    <p class="modal-title">Luncheon materials</p>
+    <p class="modal-section-label">Presentation</p>
+    <a href="pdfs/UF_Jax_Law_Program.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-ppt">PPT</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">MSL Program Presentation</p>
+        <p class="modal-file-desc">Jennifer McIntyre &middot; Asst. Dean, Levin College of Law</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+  </div>
+</div>
+
+<!-- Architecture -->
+<div id="modal-arch" class="modal-overlay" onclick="closeOnOverlay(event,'modal-arch')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-arch')">&times;</button>
+    <p class="modal-eyebrow">Architecture &mdash; CityLab Jacksonville</p>
+    <p class="modal-title">Luncheon materials</p>
+    <p class="modal-section-label">Presentation</p>
+    <a href="pdfs/UF_Jax_Architecture_Program.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-ppt">PPT</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">CityLab-Jacksonville Presentation</p>
+        <p class="modal-file-desc">Nancy Clark, Director &middot; Ivan Smith, Distinguished Professor</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+  </div>
+</div>
+
+<!-- Business (MSM + MBA — shared presentation) -->
+<div id="modal-biz" class="modal-overlay" onclick="closeOnOverlay(event,'modal-biz')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modal-biz')">&times;</button>
+    <p class="modal-eyebrow">MBA &amp; MS in Management</p>
+    <p class="modal-title">Luncheon materials</p>
+    <p class="modal-section-label">Presentation</p>
+    <a href="pdfs/UF_Jax_Business_Program.pdf" target="_blank" class="modal-file">
+      <div class="modal-file-icon icon-ppt">PPT</div>
+      <div class="modal-file-info">
+        <p class="modal-file-name">Warrington College of Business Presentation</p>
+        <p class="modal-file-desc">John Gresley, Assoc. Dean &middot; Lea Fernandes, Asst. Director</p>
+      </div>
+      <span class="modal-file-arrow">&#8599;</span>
+    </a>
+  </div>
+</div>
+
+
+<script>
+  function openModal(id) {
+    document.getElementById(id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeOnOverlay(e, id) {
+    if (e.target === document.getElementById(id)) closeModal(id);
+  }
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(function(m) {
+        m.classList.remove('open');
+      });
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>
